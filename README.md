@@ -17,11 +17,30 @@ Racetrak is built on the following principles:
 
 ## Schema
 
+> [!NOTE]
+> Work in progress: this ER diagram is NOT complete.
+
 <!-- https://mermaid.js.org/syntax/entityRelationshipDiagram.html -->
 
 ```mermaid
 erDiagram
-    PROFILE ||--o{ WORKOUT : contains
+    USER }o--|{ PLAN : uses
 
-    WORKOUT ||--o{ EXERCISE : contains
+    USER {
+        string authorUsername PK
+        string[] planSlugs FK
+    }
+
+    PLAN ||--o{ WORKOUT : contains
+
+    PLAN {
+        string slug PK
+        string title
+    }
+
+    WORKOUT }o--o{ EXERCISE : contains
+
+    WORKOUT {}
+
+    EXERCISE {}
 ```
